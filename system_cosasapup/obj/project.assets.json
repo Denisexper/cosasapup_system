@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\vasqu\\source\\repos\\system_cosasapup\\system_cosasapup\\system_cosasapup.csproj",
+      "projectUniqueName": "C:\\Users\\vasqu\\Source\\Repos\\cosasapup_system\\system_cosasapup\\system_cosasapup.csproj",
       "projectName": "system_cosasapup",
-      "projectPath": "C:\\Users\\vasqu\\source\\repos\\system_cosasapup\\system_cosasapup\\system_cosasapup.csproj",
+      "projectPath": "C:\\Users\\vasqu\\Source\\Repos\\cosasapup_system\\system_cosasapup\\system_cosasapup.csproj",
       "packagesPath": "C:\\Users\\vasqu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\vasqu\\source\\repos\\system_cosasapup\\system_cosasapup\\obj\\",
+      "outputPath": "C:\\Users\\vasqu\\Source\\Repos\\cosasapup_system\\system_cosasapup\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\vasqu\\AppData\\Roaming\\NuGet\\NuGet.Config",
