@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("system_cosasapup")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d3fe9ace4fda5c4f2baf558ae3c32182620c68bd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e903a8cd9793f2ca1283b707af5d321ff55c63d8")]
 [assembly: System.Reflection.AssemblyProductAttribute("system_cosasapup")]
 [assembly: System.Reflection.AssemblyTitleAttribute("system_cosasapup")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
