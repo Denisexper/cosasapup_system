@@ -5,9 +5,12 @@
 }
 
 <h1 class="text-2xl font-bold mb-4">Lista de Pegues</h1>
+
+<!-- Botón para crear un nuevo Pegue -->
 <a asp-action="CrearPegue" class="btn btn-success mb-3">
     <i class="bi bi-plus-circle"></i> Crear nuevo Pegue
 </a>
+
 <table class="table table-bordered table-striped w-full">
     <thead>
         <tr>
@@ -17,34 +20,39 @@
             <th>Dueño</th>
             <th>Código</th>
             <th>Estado</th>
-            <th>ID Pago</th>
-            <th>Pago (relación)</th>
+            <th>Estado de Pago</th>  <!-- Cambié el nombre de la columna -->
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var pegue in Model)
         {
             <tr>
-                <td>@pegue.id</td>
+                <td>@pegue.PegueId</td>
                 <td>@pegue.comunidad</td>
                 <td>@pegue.direccion</td>
                 <td>@pegue.dueño</td>
                 <td>@pegue.codigo</td>
                 <td>@(pegue.estado ? "Activo" : "Inactivo")</td>
-                <td>@pegue.idPago</td>
                 <td>
-                    @if (pegue.pagos != null)
+                    @if (pegue.pagos != null && pegue.pagos.Any())
                     {
-                        <span>@pegue.pagos.ToString()</span>
-                        <!-- Reemplaza esto por una propiedad real como pagos.monto si existe -->
+                        <!-- Mostrar el monto total de los pagos -->
+                        <span class="text-success fw-bold">Pagado - @pegue.pagos.Sum(p => p.monto).ToString("C")</span>
                     }
                     else
                     {
-                        <span>Sin pago</span>
+                        <!-- Si no hay pagos, mostrar 'No pagado' -->
+                        <span class="text-danger">No pagado</span>
                     }
+                </td>
+                <td>
+                    <!-- Botón para registrar un nuevo pago -->
+                    <a href="@Url.Action("CrearPago", "Home", new { pegueId = pegue.PegueId })" class="btn btn-primary">
+                        Registrar Pago
+                    </a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-

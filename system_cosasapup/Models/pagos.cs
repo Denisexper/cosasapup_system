@@ -8,6 +8,8 @@
         public string metodoPago { get; set; }
         public string observaciones { get; set; }
 
-        public List<pegues> pegues { get; set; }
+        // Relación con la entidad pegues muchos  a uno
+        public int PegueId { get; set; }
+        public pegues Pegue { get; set; }
     }
 }

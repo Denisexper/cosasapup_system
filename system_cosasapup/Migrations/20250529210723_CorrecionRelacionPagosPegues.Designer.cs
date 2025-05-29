@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using system_cosasapup.Data;
 
@@ -11,9 +12,11 @@ using system_cosasapup.Data;
 namespace system_cosasapup.Migrations
 {
     [DbContext(typeof(AplicationDbContext))]
-    partial class AplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250529210723_CorrecionRelacionPagosPegues")]
+    partial class CorrecionRelacionPagosPegues
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,9 +32,6 @@ namespace system_cosasapup.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
-
-                    b.Property<int>("PegueId")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("fechaPago")
                         .HasColumnType("datetime2");
@@ -49,18 +49,16 @@ namespace system_cosasapup.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("PegueId");
-
                     b.ToTable("pagos");
                 });
 
             modelBuilder.Entity("system_cosasapup.Models.pegues", b =>
                 {
-                    b.Property<int>("PegueId")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PegueId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
                     b.Property<string>("codigo")
                         .IsRequired()
@@ -81,7 +79,12 @@ namespace system_cosasapup.Migrations
                     b.Property<bool>("estado")
                         .HasColumnType("bit");
 
-                    b.HasKey("PegueId");
+                    b.Property<int>("idPago")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("idPago");
 
                     b.ToTable("pegues");
                 });
@@ -107,20 +110,20 @@ namespace system_cosasapup.Migrations
                     b.ToTable("usuarios");
                 });
 
-            modelBuilder.Entity("system_cosasapup.Models.pagos", b =>
+            modelBuilder.Entity("system_cosasapup.Models.pegues", b =>
                 {
-                    b.HasOne("system_cosasapup.Models.pegues", "Pegue")
-                        .WithMany("pagos")
-                        .HasForeignKey("PegueId")
+                    b.HasOne("system_cosasapup.Models.pagos", "pagos")
+                        .WithMany("pegues")
+                        .HasForeignKey("idPago")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Pegue");
+                    b.Navigation("pagos");
                 });
 
-            modelBuilder.Entity("system_cosasapup.Models.pegues", b =>
+            modelBuilder.Entity("system_cosasapup.Models.pagos", b =>
                 {
-                    b.Navigation("pagos");
+                    b.Navigation("pegues");
                 });
 #pragma warning restore 612, 618
         }

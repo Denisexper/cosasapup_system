@@ -26,6 +26,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\vasqu\Source\Repos\cosasapup_system\system_cosasapup
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/vasqu/Source/Repos/cosasapup_system/system_cosasapup/Views/Home/CrearPago.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmVhclBhZ28uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/vasqu/Source/Repos/cosasapup_system/system_cosasapup/Views/Home/CrearPegue.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmVhclBlZ3VlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

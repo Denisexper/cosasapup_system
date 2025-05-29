@@ -5,7 +5,7 @@
 
 <h2>Crear nuevo Pegue</h2>
 
-<form asp-action="CreatePegue" method="post">
+<form asp-action="CrearPegue" method="post">
     <div class="form-group">
         <label asp-for="comunidad"></label>
         <input asp-for="comunidad" class="form-control" />
@@ -37,12 +37,13 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="idPago"></label>
-        <select asp-for="idPago" class="form-control" asp-items="@(ViewData["Pagos"] as SelectList)">
+        <label asp-for="pagos"></label>
+        <select asp-for="pagos" class="form-control" asp-items="@(ViewData["Pagos"] as SelectList)">
             <option value="">-- Selecciona un pago --</option>
         </select>
-        <span asp-validation-for="idPago" class="text-danger"></span>
+        <span asp-validation-for="pagos" class="text-danger"></span>
     </div>
+
 
     <button type="submit" class="btn btn-success">Guardar</button>
     <a asp-action="ListaPegues" class="btn btn-secondary">Cancelar</a>
@@ -53,4 +54,3 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
-    

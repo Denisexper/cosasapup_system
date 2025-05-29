@@ -3,40 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|c:\\users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\views\\home\\listapegues.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|solutionrelative:system_cosasapup\\views\\home\\listapegues.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|c:\\users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\views\\home\\crearpago.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|solutionrelative:system_cosasapup\\views\\home\\crearpago.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|c:\\users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\views\\home\\crearpegue.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|solutionrelative:system_cosasapup\\views\\home\\crearpegue.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|c:\\users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|solutionrelative:system_cosasapup\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|c:\\users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|solutionrelative:system_cosasapup\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|c:\\users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|solutionrelative:system_cosasapup\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|c:\\users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\data\\aplicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|solutionrelative:system_cosasapup\\data\\aplicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|c:\\users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\migrations\\20250516165120_primera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|solutionrelative:system_cosasapup\\migrations\\20250516165120_primera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|c:\\users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\views\\home\\listapegues.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|solutionrelative:system_cosasapup\\views\\home\\listapegues.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|c:\\users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\models\\pagos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|solutionrelative:system_cosasapup\\models\\pagos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|c:\\users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\models\\pegues.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|solutionrelative:system_cosasapup\\models\\pegues.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|c:\\users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|solutionrelative:system_cosasapup\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|c:\\users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|solutionrelative:system_cosasapup\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|c:\\users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|solutionrelative:system_cosasapup\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E2F158B9-8B3E-4616-A631-177CF6CA6862}|system_cosasapup\\system_cosasapup.csproj|c:\\users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -70,26 +70,78 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CrearPegue.cshtml",
-              "DocumentMoniker": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Views\\Home\\CrearPegue.cshtml",
-              "RelativeDocumentMoniker": "system_cosasapup\\Views\\Home\\CrearPegue.cshtml",
-              "ToolTip": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Views\\Home\\CrearPegue.cshtml",
-              "RelativeToolTip": "system_cosasapup\\Views\\Home\\CrearPegue.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAA+AAAAAAAAAA==",
+              "DocumentIndex": 7,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "system_cosasapup\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "system_cosasapup\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-29T17:53:21.727Z",
+              "WhenOpened": "2025-05-29T21:12:09.656Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "CrearPago.cshtml",
+              "DocumentMoniker": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Views\\Home\\CrearPago.cshtml",
+              "RelativeDocumentMoniker": "system_cosasapup\\Views\\Home\\CrearPago.cshtml",
+              "ToolTip": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Views\\Home\\CrearPago.cshtml",
+              "RelativeToolTip": "system_cosasapup\\Views\\Home\\CrearPago.cshtml",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAADsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-29T21:11:50.046Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Data\\AplicationDbContext.cs",
+              "RelativeDocumentMoniker": "system_cosasapup\\Data\\AplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Data\\AplicationDbContext.cs",
+              "RelativeToolTip": "system_cosasapup\\Data\\AplicationDbContext.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAmwCAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-29T21:06:03.082Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "pagos.cs",
+              "DocumentMoniker": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Models\\pagos.cs",
+              "RelativeDocumentMoniker": "system_cosasapup\\Models\\pagos.cs",
+              "ToolTip": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Models\\pagos.cs",
+              "RelativeToolTip": "system_cosasapup\\Models\\pagos.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-29T20:31:27.739Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "pegues.cs",
+              "DocumentMoniker": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Models\\pegues.cs",
+              "RelativeDocumentMoniker": "system_cosasapup\\Models\\pegues.cs",
+              "ToolTip": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Models\\pegues.cs",
+              "RelativeToolTip": "system_cosasapup\\Models\\pegues.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-29T20:31:22.722Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "ListaPegues.cshtml",
               "DocumentMoniker": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Views\\Home\\ListaPegues.cshtml",
               "RelativeDocumentMoniker": "system_cosasapup\\Views\\Home\\ListaPegues.cshtml",
-              "ToolTip": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Views\\Home\\ListaPegues.cshtml*",
-              "RelativeToolTip": "system_cosasapup\\Views\\Home\\ListaPegues.cshtml*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAMAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Views\\Home\\ListaPegues.cshtml",
+              "RelativeToolTip": "system_cosasapup\\Views\\Home\\ListaPegues.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAADoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-05-29T17:40:51.721Z",
               "EditorCaption": ""
@@ -97,83 +149,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "system_cosasapup\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "system_cosasapup\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAoAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-29T03:59:37.864Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Program.cs",
-              "RelativeDocumentMoniker": "system_cosasapup\\Program.cs",
-              "ToolTip": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Program.cs",
-              "RelativeToolTip": "system_cosasapup\\Program.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAAA4AAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-29T03:57:54.401Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Privacy.cshtml",
-              "DocumentMoniker": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Views\\Home\\Privacy.cshtml",
-              "RelativeDocumentMoniker": "system_cosasapup\\Views\\Home\\Privacy.cshtml",
-              "ToolTip": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Views\\Home\\Privacy.cshtml",
-              "RelativeToolTip": "system_cosasapup\\Views\\Home\\Privacy.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-29T03:30:11.184Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "20250516165120_primera.cs",
-              "DocumentMoniker": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Migrations\\20250516165120_primera.cs",
-              "RelativeDocumentMoniker": "system_cosasapup\\Migrations\\20250516165120_primera.cs",
-              "ToolTip": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Migrations\\20250516165120_primera.cs",
-              "RelativeToolTip": "system_cosasapup\\Migrations\\20250516165120_primera.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-16T16:51:21.114Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AplicationDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Data\\AplicationDbContext.cs",
-              "RelativeDocumentMoniker": "system_cosasapup\\Data\\AplicationDbContext.cs",
-              "ToolTip": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Data\\AplicationDbContext.cs",
-              "RelativeToolTip": "system_cosasapup\\Data\\AplicationDbContext.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAmwBcAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-16T16:37:57.99Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "system_cosasapup\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "system_cosasapup\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAAAEwAAAAFAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Controllers\\HomeController.cs*",
+              "RelativeToolTip": "system_cosasapup\\Controllers\\HomeController.cs*",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAAwHEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-16T15:59:33.164Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 1,
+              "Title": "CrearPegue.cshtml",
+              "DocumentMoniker": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Views\\Home\\CrearPegue.cshtml",
+              "RelativeDocumentMoniker": "system_cosasapup\\Views\\Home\\CrearPegue.cshtml",
+              "ToolTip": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\Views\\Home\\CrearPegue.cshtml",
+              "RelativeToolTip": "system_cosasapup\\Views\\Home\\CrearPegue.cshtml",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAwC4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-29T17:53:21.727Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\vasqu\\source\\repos\\cosasapup_system\\system_cosasapup\\appsettings.json",
               "RelativeDocumentMoniker": "system_cosasapup\\appsettings.json",

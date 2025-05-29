@@ -19,12 +19,17 @@ namespace system_cosasapup.Data
         {
             base.OnModelCreating(modelBuilder);
 
-           
+            // Definir la clave primaria de la entidad pegues
             modelBuilder.Entity<pegues>()
-                .HasOne(p => p.pagos)
-                .WithMany(p => p.pegues)
-                .HasForeignKey(p => p.idPago)
+                .HasKey(p => p.PegueId);  // Marca PegueId como la clave primaria
+
+            // Configurar la relación con pagos
+            modelBuilder.Entity<pegues>()
+                .HasMany(p => p.pagos)
+                .WithOne(p => p.Pegue)
+                .HasForeignKey(p => p.PegueId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
+
     }
 }
