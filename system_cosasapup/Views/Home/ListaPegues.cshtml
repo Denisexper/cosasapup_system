@@ -1,0 +1,50 @@
+﻿@model List<system_cosasapup.Models.pegues>
+
+@{
+    ViewData["Title"] = "Lista de Pegues";
+}
+
+<h1 class="text-2xl font-bold mb-4">Lista de Pegues</h1>
+<a asp-action="CrearPegue" class="btn btn-success mb-3">
+    <i class="bi bi-plus-circle"></i> Crear nuevo Pegue
+</a>
+<table class="table table-bordered table-striped w-full">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Comunidad</th>
+            <th>Dirección</th>
+            <th>Dueño</th>
+            <th>Código</th>
+            <th>Estado</th>
+            <th>ID Pago</th>
+            <th>Pago (relación)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pegue in Model)
+        {
+            <tr>
+                <td>@pegue.id</td>
+                <td>@pegue.comunidad</td>
+                <td>@pegue.direccion</td>
+                <td>@pegue.dueño</td>
+                <td>@pegue.codigo</td>
+                <td>@(pegue.estado ? "Activo" : "Inactivo")</td>
+                <td>@pegue.idPago</td>
+                <td>
+                    @if (pegue.pagos != null)
+                    {
+                        <span>@pegue.pagos.ToString()</span>
+                        <!-- Reemplaza esto por una propiedad real como pagos.monto si existe -->
+                    }
+                    else
+                    {
+                        <span>Sin pago</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

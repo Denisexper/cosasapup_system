@@ -1,0 +1,56 @@
+﻿@model system_cosasapup.Models.pegues
+@{
+    ViewData["Title"] = "Crear Pegue";
+}
+
+<h2>Crear nuevo Pegue</h2>
+
+<form asp-action="CreatePegue" method="post">
+    <div class="form-group">
+        <label asp-for="comunidad"></label>
+        <input asp-for="comunidad" class="form-control" />
+        <span asp-validation-for="comunidad" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="direccion"></label>
+        <input asp-for="direccion" class="form-control" />
+        <span asp-validation-for="direccion" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="dueño"></label>
+        <input asp-for="dueño" class="form-control" />
+        <span asp-validation-for="dueño" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="codigo"></label>
+        <input asp-for="codigo" class="form-control" />
+        <span asp-validation-for="codigo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="estado"></label>
+        <input asp-for="estado" type="checkbox" />
+        <span asp-validation-for="estado" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="idPago"></label>
+        <select asp-for="idPago" class="form-control" asp-items="@(ViewData["Pagos"] as SelectList)">
+            <option value="">-- Selecciona un pago --</option>
+        </select>
+        <span asp-validation-for="idPago" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a asp-action="ListaPegues" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+    
