@@ -20,7 +20,7 @@
             <th>Dueño</th>
             <th>Código</th>
             <th>Estado</th>
-            <th>Estado de Pago</th>  <!-- Cambié el nombre de la columna -->
+            <th>Estado de Pago</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -37,20 +37,33 @@
                 <td>
                     @if (pegue.pagos != null && pegue.pagos.Any())
                     {
-                        <!-- Mostrar el monto total de los pagos -->
                         <span class="text-success fw-bold">Pagado - @pegue.pagos.Sum(p => p.monto).ToString("C")</span>
                     }
                     else
                     {
-                        <!-- Si no hay pagos, mostrar 'No pagado' -->
                         <span class="text-danger">No pagado</span>
                     }
                 </td>
                 <td>
                     <!-- Botón para registrar un nuevo pago -->
-                    <a href="@Url.Action("CrearPago", "Home", new { pegueId = pegue.PegueId })" class="btn btn-primary">
+                    <a href="@Url.Action("CrearPago", "Home", new { pegueId = pegue.PegueId })" class="btn btn-sm btn-primary mb-1">
                         Registrar Pago
                     </a>
+
+                    <!-- Botón Editar -->
+                    <a href="@Url.Action("EditarPegue", "Home", new { id = pegue.PegueId })" class="btn btn-sm btn-warning mb-1">
+                        Editar
+                    </a>
+
+                    <!-- Formulario para Eliminar (VERSIÓN CORRECTA) -->
+                    <form asp-action="EliminarPegue" asp-controller="Home" method="post" class="d-inline">
+                        <input type="hidden" name="id" value="@pegue.PegueId" />
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-sm btn-danger"
+                                onclick="return confirm('¿Estás seguro de eliminar este pegue?')">
+                            Eliminar
+                        </button>
+                    </form>
                 </td>
             </tr>
         }

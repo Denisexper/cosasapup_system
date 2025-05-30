@@ -1,0 +1,26 @@
+﻿@model system_cosasapup.Models.pegues
+
+@{
+    ViewData["Title"] = "Editar Pegue";
+}
+
+<h2 class="text-2xl font-bold mb-4">Editar Pegue</h2>
+
+<form asp-action="EditarPegue" method="post">
+    <input type="hidden" asp-for="PegueId" />
+
+    <div class="mb-3">
+        <label asp-for="dueño" class="form-label">Nombre del Dueño</label>
+        <input asp-for="dueño" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="comunidad" class="form-label">Comunidad</label>
+        <input asp-for="comunidad" class="form-control" />
+    </div>
+
+    <!-- Agrega más campos si tienes más propiedades en la entidad -->
+
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+    <a asp-action="ListaPegues" class="btn btn-secondary">Cancelar</a>
+</form>

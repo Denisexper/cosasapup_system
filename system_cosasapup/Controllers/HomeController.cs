@@ -100,4 +100,79 @@ public class HomeController : Controller
         return RedirectToAction("ListaPegues");
     }
 
+    //ver lista de pagos
+    public async Task<IActionResult> ListaPagos()
+    {
+        var pagos = await _context.pagos
+            .Include(p => p.Pegue)
+            .ToListAsync();
+
+        return View(pagos);
+    }
+
+    // GET: Editar Pegue
+    [HttpGet]
+    public async Task<IActionResult> EditarPegue(int id)
+    {
+        var pegue = await _context.pegues.FindAsync(id);
+        if (pegue == null)
+        {
+            TempData["Error"] = "Pegue no encontrado";
+            return RedirectToAction("ListaPegues");
+        }
+
+        return View(pegue);
+    }
+
+    // POST: Editar Pegue
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> EditarPegue(pegues pegueEditado)
+    {
+        var pegueExistente = await _context.pegues.FindAsync(pegueEditado.PegueId);
+        if (pegueExistente == null)
+        {
+            TempData["Error"] = "Pegue no encontrado";
+            return RedirectToAction("ListaPegues");
+        }
+
+        pegueExistente.dueño = pegueEditado.dueño;
+        pegueExistente.comunidad = pegueEditado.comunidad;
+        // Agrega aquí otras propiedades que quieras editar
+
+        await _context.SaveChangesAsync();
+        TempData["Success"] = "Pegue editado exitosamente";
+        return RedirectToAction("ListaPegues");
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> EliminarPegue(int id)
+    {
+        var pegue = await _context.pegues
+            .Include(p => p.pagos)
+            .FirstOrDefaultAsync(p => p.PegueId == id);
+
+        if (pegue == null)
+        {
+            TempData["Error"] = "Pegue no encontrado";
+            return RedirectToAction("ListaPegues");
+        }
+
+        if (pegue.pagos.Any())
+        {
+            TempData["Error"] = "No se puede eliminar un Pegue que tiene pagos asociados.";
+            return RedirectToAction("ListaPegues");
+        }
+
+        _context.pegues.Remove(pegue);
+        await _context.SaveChangesAsync();
+
+        TempData["Success"] = "Pegue eliminado exitosamente";
+        return RedirectToAction("ListaPegues");
+    }
+
+
+
+
 }
