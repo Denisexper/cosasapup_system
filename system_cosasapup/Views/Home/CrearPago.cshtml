@@ -6,50 +6,49 @@
 
 <h2>@ViewData["Title"]</h2>
 
+@if (Model.Pegue != null)
+{
+    <h3>Para @Model.Pegue.comunidad - @Model.Pegue.dueño</h3>
+}
+else
+{
+    <div class="alert alert-danger">Error: No se encontró el pegue asociado</div>
+}
+
 <form asp-action="CrearPago" method="post">
+    <input type="hidden" asp-for="PegueId" />
+
     <div class="form-group">
-        <label for="monto">Monto</label>
-        <input type="text" class="form-control" id="monto" name="monto" asp-for="monto" />
+        <label asp-for="monto"></label>
+        <input type="number" class="form-control" asp-for="monto" step="0.01" />
         <span asp-validation-for="monto" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label for="fechaPago">Fecha de Pago</label>
-        <input type="date" class="form-control" id="fechaPago" name="fechaPago" asp-for="fechaPago" />
+        <label asp-for="fechaPago"></label>
+        <input type="date" class="form-control" asp-for="fechaPago" />
         <span asp-validation-for="fechaPago" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label for="metodoPago">Método de Pago</label>
-        <select class="form-control" id="metodoPago" name="metodoPago" asp-for="metodoPago">
+        <label asp-for="metodoPago"></label>
+        <select class="form-control" asp-for="metodoPago">
             <option value="">Selecciona el método de pago</option>
             <option value="Efectivo">Efectivo</option>
             <option value="Tarjeta">Tarjeta</option>
             <option value="Transferencia">Transferencia</option>
-            <option value="Otro">Otro</option>
         </select>
         <span asp-validation-for="metodoPago" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label for="observaciones">Observaciones</label>
-        <textarea class="form-control" id="observaciones" name="observaciones" asp-for="observaciones"></textarea>
+        <label asp-for="observaciones"></label>
+        <textarea class="form-control" asp-for="observaciones" rows="3"></textarea>
         <span asp-validation-for="observaciones" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
-        <label for="PegueId">Pegue</label>
-        <select class="form-control" id="PegueId" name="PegueId" asp-for="PegueId">
-            <option value="">Selecciona el pegue</option>
-            @foreach (var pegue in ViewData["Pegues"] as List<system_cosasapup.Models.pegues>)
-            {
-                <option value="@pegue.PegueId">@pegue.comunidad - @pegue.dueño</option>
-            }
-        </select>
-        <span asp-validation-for="PegueId" class="text-danger"></span>
-    </div>
-
     <button type="submit" class="btn btn-primary">Registrar Pago</button>
+    <a asp-action="ListaPegues" class="btn btn-secondary">Cancelar</a>
 </form>
 
 @section Scripts {

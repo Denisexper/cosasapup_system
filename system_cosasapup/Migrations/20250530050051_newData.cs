@@ -6,25 +6,26 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace system_cosasapup.Migrations
 {
     /// <inheritdoc />
-    public partial class primera : Migration
+    public partial class newData : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "pagos",
+                name: "pegues",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    PegueId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    monto = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    fechaPago = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    metodoPago = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    observaciones = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    comunidad = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    direccion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    dueño = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    codigo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    estado = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_pagos", x => x.id);
+                    table.PrimaryKey("PK_pegues", x => x.PegueId);
                 });
 
             migrationBuilder.CreateTable(
@@ -42,46 +43,45 @@ namespace system_cosasapup.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "pegues",
+                name: "pagos",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    comunidad = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    direccion = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    dueño = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    codigo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    estado = table.Column<bool>(type: "bit", nullable: false),
-                    idPago = table.Column<int>(type: "int", nullable: false)
+                    monto = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    fechaPago = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    metodoPago = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    observaciones = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PegueId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_pegues", x => x.id);
+                    table.PrimaryKey("PK_pagos", x => x.id);
                     table.ForeignKey(
-                        name: "FK_pegues_pagos_idPago",
-                        column: x => x.idPago,
-                        principalTable: "pagos",
-                        principalColumn: "id",
+                        name: "FK_pagos_pegues_PegueId",
+                        column: x => x.PegueId,
+                        principalTable: "pegues",
+                        principalColumn: "PegueId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_pegues_idPago",
-                table: "pegues",
-                column: "idPago");
+                name: "IX_pagos_PegueId",
+                table: "pagos",
+                column: "PegueId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "pegues");
+                name: "pagos");
 
             migrationBuilder.DropTable(
                 name: "usuarios");
 
             migrationBuilder.DropTable(
-                name: "pagos");
+                name: "pegues");
         }
     }
 }

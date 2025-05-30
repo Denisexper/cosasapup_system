@@ -12,8 +12,8 @@ using system_cosasapup.Data;
 namespace system_cosasapup.Migrations
 {
     [DbContext(typeof(AplicationDbContext))]
-    [Migration("20250516165120_primera")]
-    partial class primera
+    [Migration("20250530050051_newData")]
+    partial class newData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,6 +33,9 @@ namespace system_cosasapup.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
+                    b.Property<int>("PegueId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("fechaPago")
                         .HasColumnType("datetime2");
 
@@ -49,16 +52,18 @@ namespace system_cosasapup.Migrations
 
                     b.HasKey("id");
 
+                    b.HasIndex("PegueId");
+
                     b.ToTable("pagos");
                 });
 
             modelBuilder.Entity("system_cosasapup.Models.pegues", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("PegueId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PegueId"));
 
                     b.Property<string>("codigo")
                         .IsRequired()
@@ -79,12 +84,7 @@ namespace system_cosasapup.Migrations
                     b.Property<bool>("estado")
                         .HasColumnType("bit");
 
-                    b.Property<int>("idPago")
-                        .HasColumnType("int");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("idPago");
+                    b.HasKey("PegueId");
 
                     b.ToTable("pegues");
                 });
@@ -110,20 +110,20 @@ namespace system_cosasapup.Migrations
                     b.ToTable("usuarios");
                 });
 
-            modelBuilder.Entity("system_cosasapup.Models.pegues", b =>
+            modelBuilder.Entity("system_cosasapup.Models.pagos", b =>
                 {
-                    b.HasOne("system_cosasapup.Models.pagos", "pagos")
-                        .WithMany("pegues")
-                        .HasForeignKey("idPago")
+                    b.HasOne("system_cosasapup.Models.pegues", "Pegue")
+                        .WithMany("pagos")
+                        .HasForeignKey("PegueId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("pagos");
+                    b.Navigation("Pegue");
                 });
 
-            modelBuilder.Entity("system_cosasapup.Models.pagos", b =>
+            modelBuilder.Entity("system_cosasapup.Models.pegues", b =>
                 {
-                    b.Navigation("pegues");
+                    b.Navigation("pagos");
                 });
 #pragma warning restore 612, 618
         }

@@ -16,13 +16,11 @@ public class HomeController : Controller
         _context = context;
     }
 
-    // Mostrar los pegues y sus pagos
     public async Task<IActionResult> Index()
     {
         var listaPegues = await _context.pegues
-            .Include(p => p.pagos) // Incluye los pagos relacionados
+            .Include(p => p.pagos)
             .ToListAsync();
-
         return View(listaPegues);
     }
 
@@ -37,71 +35,72 @@ public class HomeController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 
-    // Método para mostrar la lista de pegues
     public async Task<IActionResult> ListaPegues()
     {
         var listaPegues = await _context.pegues
-            .Include(p => p.pagos) // Trae los pagos asociados
+            .Include(p => p.pagos)
             .ToListAsync();
-
-        return View("ListaPegues", listaPegues);
+        return View(listaPegues);
     }
 
-    // Método para registrar un nuevo pegue
-    // GET: Home/CreatePegue
     [HttpGet]
     public IActionResult CrearPegue()
     {
-        // Pasando una lista de pagos que se utilizará en el formulario
-        ViewData["Pagos"] = new SelectList(_context.pagos, "id", "monto");
+        ViewBag.Pagos = new SelectList(_context.pagos, "PagoId", "monto");
         return View();
     }
 
-
-    // POST: Home/CreatePegue
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> CrearPegue(pegues nuevoPegue)
     {
         if (ModelState.IsValid)
         {
-            _context.Add(nuevoPegue);  // Agregar el nuevo pegue
+            _context.Add(nuevoPegue);
             await _context.SaveChangesAsync();
-            return RedirectToAction("ListaPegues"); // Redirigir a la lista de pegues
+            TempData["Success"] = "Pegue creado exitosamente";
+            return RedirectToAction("ListaPegues");
         }
 
-        // Si el modelo no es válido, devolvemos la lista de pagos
-        ViewData["Pagos"] = new SelectList(_context.pagos.ToList(), "id", "monto", nuevoPegue.PegueId);
-        return View(nuevoPegue); // Retornar la vista para corregir cualquier error
+        ViewBag.Pagos = new SelectList(_context.pagos, "PagoId", "monto", nuevoPegue.PegueId);
+        return View(nuevoPegue);
     }
 
-    // Método para registrar un pago (esto también lo puedes agregar como opción)
-    // GET: Home/CreatePago
     [HttpGet]
-    public IActionResult CrearPago()
+    public IActionResult CrearPago(int pegueId)
     {
-        // Obtener los pegues desde la base de datos
-        var pegues = _context.pegues.ToList();  // Esto obtiene todos los pegues desde la base de datos
+        var pegue = _context.pegues.Find(pegueId); // Eliminamos Include innecesario
+        if (pegue == null)
+        {
+            TempData["Error"] = "Pegue no encontrado";
+            return RedirectToAction("ListaPegues");
+        }
 
-        // Pasar los pegues a la vista a través de ViewData
-        ViewData["Pegues"] = pegues;
+        // Pasamos el pegue directamente al modelo
+        var model = new pagos
+        {
+            PegueId = pegueId,
+            fechaPago = DateTime.Today,
+            Pegue = pegue // Asignamos el objeto pegue aquí
+        };
 
-        return View();
+        return View(model);
     }
 
-    // POST: Home/CreatePago
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> CrearPago(pagos nuevoPago)
+    public async Task<IActionResult> CrearPago(pagos pago)
     {
-        ViewData["Pegues"] = _context.pegues.ToList();
-
-        if (ModelState.IsValid)
+        if (!ModelState.IsValid)
         {
-            _context.Add(nuevoPago);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("ListaPegues");  // O redirigir a donde quieras
+            // Recargar datos del pegue si hay error
+            pago.Pegue = await _context.pegues.FindAsync(pago.PegueId);
+            return View(pago);
         }
-        return View(nuevoPago);  // Retornar la vista si hay un error
+
+        _context.pagos.Add(pago);
+        await _context.SaveChangesAsync();
+        TempData["Success"] = "Pago registrado exitosamente";
+        return RedirectToAction("ListaPegues");
     }
 }
