@@ -6,8 +6,8 @@
 
 <h2 class="text-2xl font-bold mb-4">Lista de Pagos</h2>
 
-<table class="table table-bordered table-striped">
-    <thead class="bg-dark text-white">
+<table class="table table-bordered table-striped w-full">
+    <thead>
         <tr>
             <th>Pago ID</th>
             <th>Monto</th>
@@ -20,7 +20,7 @@
         {
             <tr>
                 <td>@pago.id</td>
-                <td>@pago.monto</td>
+                <td>@pago.monto.ToString("C")</td>
                 <td>@pago.fechaPago.ToShortDateString()</td>
                 <td>@pago.Pegue?.dueño</td>
             </tr>
@@ -28,4 +28,6 @@
     </tbody>
 </table>
 
-<a asp-action="ListaPegues" class="btn btn-secondary mt-3">Volver a la lista de Pegues</a>
+<a asp-action="ListaPegues" class="btn btn-secondary mt-3">
+    <i class="bi bi-arrow-left"></i> Volver a la lista de Pegues
+</a>

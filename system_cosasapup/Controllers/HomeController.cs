@@ -138,7 +138,8 @@ public class HomeController : Controller
 
         pegueExistente.dueño = pegueEditado.dueño;
         pegueExistente.comunidad = pegueEditado.comunidad;
-        // Agrega aquí otras propiedades que quieras editar
+        pegueExistente.codigo = pegueEditado.codigo;
+        pegueExistente.direccion = pegueEditado.direccion;
 
         await _context.SaveChangesAsync();
         TempData["Success"] = "Pegue editado exitosamente";
@@ -153,24 +154,13 @@ public class HomeController : Controller
             .Include(p => p.pagos)
             .FirstOrDefaultAsync(p => p.PegueId == id);
 
-        if (pegue == null)
-        {
-            TempData["Error"] = "Pegue no encontrado";
-            return RedirectToAction("ListaPegues");
-        }
-
-        if (pegue.pagos.Any())
-        {
-            TempData["Error"] = "No se puede eliminar un Pegue que tiene pagos asociados.";
-            return RedirectToAction("ListaPegues");
-        }
-
         _context.pegues.Remove(pegue);
         await _context.SaveChangesAsync();
 
         TempData["Success"] = "Pegue eliminado exitosamente";
         return RedirectToAction("ListaPegues");
     }
+
 
 
 

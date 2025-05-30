@@ -19,7 +19,16 @@
         <input asp-for="comunidad" class="form-control" />
     </div>
 
-    <!-- Agrega más campos si tienes más propiedades en la entidad -->
+    <div class="mb-3">
+        <label asp-for="codigo" class="form-label">Codigo Peuge</label>
+        <input asp-for="codigo" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="direccion" class="form-label">Direccion</label>
+        <input asp-for="direccion" class="form-control" />
+    </div>
+
 
     <button type="submit" class="btn btn-primary">Guardar cambios</button>
     <a asp-action="ListaPegues" class="btn btn-secondary">Cancelar</a>
