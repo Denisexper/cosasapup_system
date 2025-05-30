@@ -54,17 +54,14 @@ public class HomeController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> CrearPegue(pegues nuevoPegue)
     {
-        if (ModelState.IsValid)
-        {
-            _context.Add(nuevoPegue);
-            await _context.SaveChangesAsync();
-            TempData["Success"] = "Pegue creado exitosamente";
-            return RedirectToAction("ListaPegues");
-        }
-
-        ViewBag.Pagos = new SelectList(_context.pagos, "PagoId", "monto", nuevoPegue.PegueId);
-        return View(nuevoPegue);
+        // Ignoras validación (¡peligroso!)
+        _context.Add(nuevoPegue);
+        await _context.SaveChangesAsync();
+        TempData["Success"] = "Pegue creado exitosamente";
+        return RedirectToAction("ListaPegues");
     }
+
+
 
     [HttpGet]
     public IActionResult CrearPago(int pegueId)
@@ -91,16 +88,16 @@ public class HomeController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> CrearPago(pagos pago)
     {
-        if (!ModelState.IsValid)
-        {
-            // Recargar datos del pegue si hay error
-            pago.Pegue = await _context.pegues.FindAsync(pago.PegueId);
-            return View(pago);
-        }
+        // if (!ModelState.IsValid)
+        // {
+        //     pago.Pegue = await _context.pegues.FindAsync(pago.PegueId);
+        //     return View(pago);
+        // }
 
         _context.pagos.Add(pago);
         await _context.SaveChangesAsync();
         TempData["Success"] = "Pago registrado exitosamente";
         return RedirectToAction("ListaPegues");
     }
+
 }
