@@ -29,6 +29,14 @@
         <input asp-for="direccion" class="form-control" />
     </div>
 
+    <div class="mb-3">
+        <label asp-for="estado" class="form-label">Estado</label>
+        <select asp-for="estado" class="form-control">
+            <option value="true">Activo</option>
+            <option value="false">Inactivo</option>
+        </select>
+    </div>
+
 
     <button type="submit" class="btn btn-primary">Guardar cambios</button>
     <a asp-action="ListaPegues" class="btn btn-secondary">Cancelar</a>

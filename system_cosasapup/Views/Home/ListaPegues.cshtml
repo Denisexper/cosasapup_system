@@ -2,11 +2,36 @@
 
 @{
     ViewData["Title"] = "Lista de Pegues";
+    var estadoSeleccionado = ViewData["EstadoSeleccionado"]?.ToString() ?? "";
+    var comunidadFiltro = ViewData["ComunidadFiltro"]?.ToString() ?? "";
+
+    int currentPage = ViewData["CurrentPage"] != null ? (int)ViewData["CurrentPage"] : 1;
+    int pageSize = ViewData["PageSize"] != null ? (int)ViewData["PageSize"] : 15;
+    int totalRecords = ViewData["TotalRecords"] != null ? (int)ViewData["TotalRecords"] : 0;
+    int totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
 }
 
 <h1 class="text-2xl font-bold mb-4">Lista de Pegues</h1>
 
-<!-- Botón para crear un nuevo Pegue -->
+<form method="get" class="mb-4 d-flex align-items-center gap-2">
+    <label for="estado">Filtrar por estado:</label>
+    <select name="estado" id="estado" class="form-control">
+        <option value="" selected="@(string.IsNullOrEmpty(estadoSeleccionado))">Todos</option>
+        <option value="true" selected="@(estadoSeleccionado == "true")">Activos</option>
+        <option value="false" selected="@(estadoSeleccionado == "false")">Inactivos</option>
+    </select>
+
+    <label for="comunidadFiltro">Filtrar por Comunidad:</label>
+    <select name="comunidad" id="comunidadFiltro" class="form-control">
+        <option value="" selected="@(string.IsNullOrEmpty(comunidadFiltro))">-- Todas --</option>
+        <option value="Zapatagua" selected="@(comunidadFiltro == "Zapatagua")">Zapatagua</option>
+        <option value="El Almidon" selected="@(comunidadFiltro == "El Almidon")">El Almidon</option>
+        <option value="La Cajita" selected="@(comunidadFiltro == "La Cajita")">La Cajita</option>
+    </select>
+
+    <button type="submit" class="btn btn-primary">Filtrar</button>
+</form>
+
 <a asp-action="CrearPegue" class="btn btn-success mb-3">
     <i class="bi bi-plus-circle"></i> Crear nuevo Pegue
 </a>
@@ -27,6 +52,14 @@
     <tbody>
         @foreach (var pegue in Model)
         {
+            var pagosMesActual = pegue.pagos?
+            .Where(p => p.fechaPago.Month == DateTime.Now.Month && p.fechaPago.Year == DateTime.Now.Year)
+            .ToList();
+
+            var ultimoPago = pegue.pagos?
+            .OrderByDescending(p => p.fechaPago)
+            .FirstOrDefault();
+
             <tr>
                 <td>@pegue.PegueId</td>
                 <td>@pegue.comunidad</td>
@@ -35,27 +68,47 @@
                 <td>@pegue.codigo</td>
                 <td>@(pegue.estado ? "Activo" : "Inactivo")</td>
                 <td>
-                    @if (pegue.pagos != null && pegue.pagos.Any())
+                    @if (pagosMesActual != null && pagosMesActual.Any())
                     {
-                        <span class="text-success fw-bold">Pagado - @pegue.pagos.Sum(p => p.monto).ToString("C")</span>
+                        <span class="text-success fw-bold">
+                            Pagado - @pagosMesActual.Sum(p => p.monto).ToString("C")
+                        </span>
+                        <br />
+                        <small class="text-muted">
+                            Mes actual: @DateTime.Now.ToString("MMMM yyyy", new System.Globalization.CultureInfo("es-ES"))
+                        </small>
                     }
                     else
                     {
                         <span class="text-danger">No pagado</span>
                     }
+
+                    @if (ultimoPago != null)
+                    {
+                        <br />
+                        <small class="text-muted">
+                            Último pago: @ultimoPago.fechaPago.ToString("MMMM yyyy", new System.Globalization.CultureInfo("es-ES"))
+                        </small>
+                    }
                 </td>
                 <td>
-                    <!-- Botón para registrar un nuevo pago -->
-                    <a href="@Url.Action("CrearPago", "Home", new { pegueId = pegue.PegueId })" class="btn btn-sm btn-primary mb-1">
-                        Registrar Pago
-                    </a>
+                    @if (pagosMesActual != null && pagosMesActual.Any())
+                    {
+                        <button class="btn btn-sm btn-secondary mb-1" disabled>
+                            Pago del mes registrado
+                        </button>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("CrearPago", "Home", new { pegueId = pegue.PegueId })" class="btn btn-sm btn-primary mb-1">
+                            Registrar Pago
+                        </a>
+                    }
 
-                    <!-- Botón Editar -->
                     <a href="@Url.Action("EditarPegue", "Home", new { id = pegue.PegueId })" class="btn btn-sm btn-warning mb-1">
                         Editar
                     </a>
 
-                    
                     <form asp-action="EliminarPegue" asp-controller="Home" method="post" class="d-inline">
                         <input type="hidden" name="id" value="@pegue.PegueId" />
                         @Html.AntiForgeryToken()
@@ -69,3 +122,23 @@
         }
     </tbody>
 </table>
+
+<!-- Paginación -->
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+            <a class="page-link" href="@Url.Action("ListaPegues", new { estado = estadoSeleccionado, comunidad = comunidadFiltro, page = currentPage - 1 })" tabindex="-1">Anterior</a>
+        </li>
+
+        @for (int i = 1; i <= totalPages; i++)
+        {
+            <li class="page-item @(i == currentPage ? "active" : "")">
+                <a class="page-link" href="@Url.Action("ListaPegues", new { estado = estadoSeleccionado, comunidad = comunidadFiltro, page = i })">@i</a>
+            </li>
+        }
+
+        <li class="page-item @(currentPage == totalPages ? "disabled" : "")">
+            <a class="page-link" href="@Url.Action("ListaPegues", new { estado = estadoSeleccionado, comunidad = comunidadFiltro, page = currentPage + 1 })">Siguiente</a>
+        </li>
+    </ul>
+</nav>

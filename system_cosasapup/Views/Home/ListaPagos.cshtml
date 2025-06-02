@@ -12,6 +12,7 @@
             <th>Pago ID</th>
             <th>Monto</th>
             <th>Fecha de Pago</th>
+            <th>Mes Pagado</th> <!-- Nueva columna -->
             <th>Dueño (Pegue)</th>
         </tr>
     </thead>
@@ -22,6 +23,7 @@
                 <td>@pago.id</td>
                 <td>@pago.monto.ToString("C")</td>
                 <td>@pago.fechaPago.ToShortDateString()</td>
+                <td>@pago.fechaPago.ToString("MMMM yyyy")</td> <!-- Muestra el mes -->
                 <td>@pago.Pegue?.dueño</td>
             </tr>
         }

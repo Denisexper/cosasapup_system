@@ -35,13 +35,43 @@ public class HomeController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 
-    public async Task<IActionResult> ListaPegues()
+    //para filtar y paginacion
+    public async Task<IActionResult> ListaPegues(string estado, string comunidad, int page = 1)
     {
-        var listaPegues = await _context.pegues
+        int pageSize = 10;
+
+        var peguesQuery = _context.pegues
             .Include(p => p.pagos)
+            .AsQueryable();
+
+        if (!string.IsNullOrEmpty(estado))
+        {
+            bool estadoBool = estado == "true";
+            peguesQuery = peguesQuery.Where(p => p.estado == estadoBool);
+        }
+
+        if (!string.IsNullOrEmpty(comunidad))
+        {
+            peguesQuery = peguesQuery.Where(p => p.comunidad == comunidad);
+        }
+
+        int totalRecords = await peguesQuery.CountAsync();
+
+        var pegues = await peguesQuery
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
             .ToListAsync();
-        return View(listaPegues);
+
+        ViewData["CurrentPage"] = page;
+        ViewData["PageSize"] = pageSize;
+        ViewData["TotalRecords"] = totalRecords;
+        ViewData["EstadoSeleccionado"] = estado;
+        ViewData["ComunidadFiltro"] = comunidad;
+
+        return View(pegues);
     }
+
+
 
     [HttpGet]
     public IActionResult CrearPegue()
@@ -88,11 +118,6 @@ public class HomeController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> CrearPago(pagos pago)
     {
-        // if (!ModelState.IsValid)
-        // {
-        //     pago.Pegue = await _context.pegues.FindAsync(pago.PegueId);
-        //     return View(pago);
-        // }
 
         _context.pagos.Add(pago);
         await _context.SaveChangesAsync();
@@ -140,6 +165,7 @@ public class HomeController : Controller
         pegueExistente.comunidad = pegueEditado.comunidad;
         pegueExistente.codigo = pegueEditado.codigo;
         pegueExistente.direccion = pegueEditado.direccion;
+        pegueExistente.estado = pegueEditado.estado;
 
         await _context.SaveChangesAsync();
         TempData["Success"] = "Pegue editado exitosamente";

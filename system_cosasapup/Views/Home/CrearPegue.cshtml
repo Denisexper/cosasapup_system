@@ -1,6 +1,8 @@
 ﻿@model system_cosasapup.Models.pegues
 @{
     ViewData["Title"] = "Crear Pegue";
+
+    var opciones = new List<string> { "Zapatagua", "El Almidon", "La Cajita" };
 }
 
 <h2>Crear nuevo Pegue</h2>
@@ -8,13 +10,25 @@
 <form asp-action="CrearPegue" method="post">
     <div class="form-group">
         <label asp-for="comunidad"></label>
-        <input asp-for="comunidad" class="form-control" />
+        <select asp-for="comunidad" class="form-control">
+            <option value="">-- Seleccionar comunidad --</option>
+            @foreach (var opcion in opciones)
+            {
+                <option value="@opcion">@opcion</option>
+            }
+        </select>
         <span asp-validation-for="comunidad" class="text-danger"></span>
     </div>
 
     <div class="form-group">
         <label asp-for="direccion"></label>
-        <input asp-for="direccion" class="form-control" />
+        <select asp-for="direccion" class="form-control">
+            <option value="">-- Seleccionar dirección --</option>
+            @foreach (var opcion in opciones)
+            {
+                <option value="@opcion">@opcion</option>
+            }
+        </select>
         <span asp-validation-for="direccion" class="text-danger"></span>
     </div>
 
@@ -32,11 +46,12 @@
 
     <div class="form-group">
         <label asp-for="estado"></label>
-        <input asp-for="estado" type="checkbox" />
+        <select asp-for="estado" class="form-control">
+            <option value="true">Activo</option>
+            <option value="false">Inactivo</option>
+        </select>
         <span asp-validation-for="estado" class="text-danger"></span>
     </div>
-    
-
 
     <button type="submit" class="btn btn-success">Guardar</button>
     <a asp-action="ListaPegues" class="btn btn-secondary">Cancelar</a>
