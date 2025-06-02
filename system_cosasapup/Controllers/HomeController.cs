@@ -54,7 +54,7 @@ public class HomeController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> CrearPegue(pegues nuevoPegue)
     {
-        // Ignoras validación (¡peligroso!)
+        // Ignoras validaciï¿½n (ï¿½peligroso!)
         _context.Add(nuevoPegue);
         await _context.SaveChangesAsync();
         TempData["Success"] = "Pegue creado exitosamente";
@@ -78,7 +78,7 @@ public class HomeController : Controller
         {
             PegueId = pegueId,
             fechaPago = DateTime.Today,
-            Pegue = pegue // Asignamos el objeto pegue aquí
+            Pegue = pegue // Asignamos el objeto pegue aquï¿½
         };
 
         return View(model);
@@ -136,7 +136,7 @@ public class HomeController : Controller
             return RedirectToAction("ListaPegues");
         }
 
-        pegueExistente.dueño = pegueEditado.dueño;
+        pegueExistente.dueÃ±o = pegueEditado.dueÃ±o;
         pegueExistente.comunidad = pegueEditado.comunidad;
         pegueExistente.codigo = pegueEditado.codigo;
         pegueExistente.direccion = pegueEditado.direccion;
