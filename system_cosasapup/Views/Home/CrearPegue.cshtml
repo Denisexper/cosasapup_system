@@ -5,56 +5,62 @@
     var opciones = new List<string> { "Zapatagua", "El Almidon", "La Cajita" };
 }
 
-<h2>Crear nuevo Pegue</h2>
+<h2 class="text-2xl font-bold mb-4 text-indigo-600">Crear nuevo Pegue</h2>
 
-<form asp-action="CrearPegue" method="post">
-    <div class="form-group">
-        <label asp-for="comunidad"></label>
-        <select asp-for="comunidad" class="form-control">
+<form asp-action="CrearPegue" method="post" class="bg-white shadow-md rounded-lg p-6">
+    <div class="mb-4">
+        <label asp-for="comunidad" class="block text-gray-700 text-sm font-bold mb-2"></label>
+        <select asp-for="comunidad" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             <option value="">-- Seleccionar comunidad --</option>
             @foreach (var opcion in opciones)
             {
-                <option value="@opcion">@opcion</option>
+                    <option value="@opcion">@opcion</option>
             }
         </select>
-        <span asp-validation-for="comunidad" class="text-danger"></span>
+        <span asp-validation-for="comunidad" class="text-red-500 text-xs italic"></span>
     </div>
 
-    <div class="form-group">
-        <label asp-for="direccion"></label>
-        <select asp-for="direccion" class="form-control">
+    <div class="mb-4">
+        <label asp-for="direccion" class="block text-gray-700 text-sm font-bold mb-2"></label>
+        <select asp-for="direccion" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             <option value="">-- Seleccionar dirección --</option>
             @foreach (var opcion in opciones)
             {
-                <option value="@opcion">@opcion</option>
+                    <option value="@opcion">@opcion</option>
             }
         </select>
-        <span asp-validation-for="direccion" class="text-danger"></span>
+        <span asp-validation-for="direccion" class="text-red-500 text-xs italic"></span>
     </div>
 
-    <div class="form-group">
-        <label asp-for="dueño"></label>
-        <input asp-for="dueño" class="form-control" />
-        <span asp-validation-for="dueño" class="text-danger"></span>
+    <div class="mb-4">
+        <label asp-for="dueño" class="block text-gray-700 text-sm font-bold mb-2"></label>
+        <input asp-for="dueño" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+        <span asp-validation-for="dueño" class="text-red-500 text-xs italic"></span>
     </div>
 
-    <div class="form-group">
-        <label asp-for="codigo"></label>
-        <input asp-for="codigo" class="form-control" />
-        <span asp-validation-for="codigo" class="text-danger"></span>
+    <div class="mb-4">
+        <label asp-for="codigo" class="block text-gray-700 text-sm font-bold mb-2"></label>
+        <input asp-for="codigo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+        <span asp-validation-for="codigo" class="text-red-500 text-xs italic"></span>
     </div>
 
-    <div class="form-group">
-        <label asp-for="estado"></label>
-        <select asp-for="estado" class="form-control">
+    <div class="mb-4">
+        <label asp-for="estado" class="block text-gray-700 text-sm font-bold mb-2"></label>
+        <select asp-for="estado" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             <option value="true">Activo</option>
             <option value="false">Inactivo</option>
         </select>
-        <span asp-validation-for="estado" class="text-danger"></span>
+        <span asp-validation-for="estado" class="text-red-500 text-xs italic"></span>
     </div>
 
-    <button type="submit" class="btn btn-success">Guardar</button>
-    <a asp-action="ListaPegues" class="btn btn-secondary">Cancelar</a>
+    <div class="flex items-center justify-between">
+        <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            Guardar
+        </button>
+        <a asp-action="ListaPegues" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            Cancelar
+        </a>
+    </div>
 </form>
 
 @section Scripts {

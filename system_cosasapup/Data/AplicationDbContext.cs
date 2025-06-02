@@ -15,6 +15,11 @@ namespace system_cosasapup.Data
         public DbSet<pagos> pagos { get; set; }
         public DbSet<usuarios> usuarios { get; set; }
 
+
+        //Login aqui modelo
+        public DbSet<Usuario> usuario { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
