@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "akL2egofahn/gk4e8+QVRh7AhK+Rsdn+co3Yq2vDPTI=",
+  "Hash": "ZxS18UzG9ihlRLuNTbdXw3c4yywsF+1N87Obf+L9qIU=",
   "Source": "system_cosasapup",
   "BasePath": "_content/system_cosasapup",
   "Mode": "Default",
@@ -91,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\vasqu\\Source\\Repos\\cosasapup_system\\system_cosasapup\\wwwroot\\img\\logo.jpg",
+      "SourceId": "system_cosasapup",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\vasqu\\Source\\Repos\\cosasapup_system\\system_cosasapup\\wwwroot\\",
+      "BasePath": "_content/system_cosasapup",
+      "RelativePath": "img/logo.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\logo.jpg"
     },
     {
       "Identity": "C:\\Users\\vasqu\\Source\\Repos\\cosasapup_system\\system_cosasapup\\wwwroot\\js\\site.js",

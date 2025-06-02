@@ -11,134 +11,197 @@
     int totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
 }
 
-<h1 class="text-2xl font-bold mb-4">Lista de Pegues</h1>
+<h1 class="text-2xl font-bold mb-4 text-gray-800">Lista de Pegues</h1>
 
-<form method="get" class="mb-4 d-flex align-items-center gap-2">
-    <label for="estado">Filtrar por estado:</label>
-    <select name="estado" id="estado" class="form-control">
+<form method="get" class="mb-4 flex items-center gap-4">
+    <label for="estado" class="text-gray-700 mr-2">Filtrar por estado:</label>
+    <select name="estado" id="estado" class="shadow-sm bg-white border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2">
         <option value="" selected="@(string.IsNullOrEmpty(estadoSeleccionado))">Todos</option>
         <option value="true" selected="@(estadoSeleccionado == "true")">Activos</option>
         <option value="false" selected="@(estadoSeleccionado == "false")">Inactivos</option>
     </select>
 
-    <label for="comunidadFiltro">Filtrar por Comunidad:</label>
-    <select name="comunidad" id="comunidadFiltro" class="form-control">
+    <label for="comunidadFiltro" class="text-gray-700 mr-2">Filtrar por Comunidad:</label>
+    <select name="comunidad" id="comunidadFiltro" class="shadow-sm bg-white border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2">
         <option value="" selected="@(string.IsNullOrEmpty(comunidadFiltro))">-- Todas --</option>
         <option value="Zapatagua" selected="@(comunidadFiltro == "Zapatagua")">Zapatagua</option>
         <option value="El Almidon" selected="@(comunidadFiltro == "El Almidon")">El Almidon</option>
         <option value="La Cajita" selected="@(comunidadFiltro == "La Cajita")">La Cajita</option>
     </select>
 
-    <button type="submit" class="btn btn-primary">Filtrar</button>
+    <button type="submit" class="bg-indigo-500 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Filtrar</button>
 </form>
 
-<a asp-action="CrearPegue" class="btn btn-success mb-3">
-    <i class="bi bi-plus-circle"></i> Crear nuevo Pegue
+<a asp-action="CrearPegue" class="inline-flex items-center bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-3">
+    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 3h3m-3 0h-3m-3 2a9 9 0 1118 0 9 9 0 01-18 0z"></path></svg>
+    Crear nuevo Pegue
 </a>
 
-<table class="table table-bordered table-striped w-full">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Comunidad</th>
-            <th>Dirección</th>
-            <th>Dueño</th>
-            <th>Código</th>
-            <th>Estado</th>
-            <th>Estado de Pago</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var pegue in Model)
-        {
-            var pagosMesActual = pegue.pagos?
-            .Where(p => p.fechaPago.Month == DateTime.Now.Month && p.fechaPago.Year == DateTime.Now.Year)
-            .ToList();
-
-            var ultimoPago = pegue.pagos?
-            .OrderByDescending(p => p.fechaPago)
-            .FirstOrDefault();
-
-            <tr>
-                <td>@pegue.PegueId</td>
-                <td>@pegue.comunidad</td>
-                <td>@pegue.direccion</td>
-                <td>@pegue.dueño</td>
-                <td>@pegue.codigo</td>
-                <td>@(pegue.estado ? "Activo" : "Inactivo")</td>
-                <td>
-                    @if (pagosMesActual != null && pagosMesActual.Any())
-                    {
-                        <span class="text-success fw-bold">
-                            Pagado - @pagosMesActual.Sum(p => p.monto).ToString("C")
-                        </span>
-                        <br />
-                        <small class="text-muted">
-                            Mes actual: @DateTime.Now.ToString("MMMM yyyy", new System.Globalization.CultureInfo("es-ES"))
-                        </small>
-                    }
-                    else
-                    {
-                        <span class="text-danger">No pagado</span>
-                    }
-
-                    @if (ultimoPago != null)
-                    {
-                        <br />
-                        <small class="text-muted">
-                            Último pago: @ultimoPago.fechaPago.ToString("MMMM yyyy", new System.Globalization.CultureInfo("es-ES"))
-                        </small>
-                    }
-                </td>
-                <td>
-                    @if (pagosMesActual != null && pagosMesActual.Any())
-                    {
-                        <button class="btn btn-sm btn-secondary mb-1" disabled>
-                            Pago del mes registrado
-                        </button>
-                    }
-                    else
-                    {
-                        <a href="@Url.Action("CrearPago", "Home", new { pegueId = pegue.PegueId })" class="btn btn-sm btn-primary mb-1">
-                            Registrar Pago
-                        </a>
-                    }
-
-                    <a href="@Url.Action("EditarPegue", "Home", new { id = pegue.PegueId })" class="btn btn-sm btn-warning mb-1">
-                        Editar
-                    </a>
-
-                    <form asp-action="EliminarPegue" asp-controller="Home" method="post" class="d-inline">
-                        <input type="hidden" name="id" value="@pegue.PegueId" />
-                        @Html.AntiForgeryToken()
-                        <button type="submit" class="btn btn-sm btn-danger"
-                                onclick="return confirm('¿Estás seguro de eliminar este pegue?')">
-                            Eliminar
-                        </button>
-                    </form>
-                </td>
+<div class="overflow-x-auto">
+    <table class="min-w-full leading-normal shadow-md rounded-lg overflow-hidden bg-white">
+        <thead>
+            <tr class="bg-gray-100 text-gray-700">
+                <th class="px-3 py-2 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">
+                    <strong>ID</strong>
+                </th>
+                <th class="px-3 py-2 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">
+                    <strong>Comunidad</strong>
+                </th>
+                <th class="px-3 py-2 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">
+                    <strong>Dirección</strong>
+                </th>
+                <th class="px-3 py-2 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">
+                    <strong>Dueño</strong>
+                </th>
+                <th class="px-3 py-2 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">
+                    <strong>Código</strong>
+                </th>
+                <th class="px-3 py-2 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">
+                    <strong>Estado</strong>
+                </th>
+                <th class="px-3 py-2 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">
+                    <strong>Estado de Pago</strong>
+                </th>
+                <th class="px-3 py-2 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">
+                    <strong>Acciones</strong>
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var pegue in Model)
+            {
+                var pagosMesActual = pegue.pagos?
+                .Where(p => p.fechaPago.Month == DateTime.Now.Month && p.fechaPago.Year == DateTime.Now.Year)
+                .ToList();
 
-<!-- Paginación -->
-<nav aria-label="Page navigation">
-    <ul class="pagination">
-        <li class="page-item @(currentPage == 1 ? "disabled" : "")">
-            <a class="page-link" href="@Url.Action("ListaPegues", new { estado = estadoSeleccionado, comunidad = comunidadFiltro, page = currentPage - 1 })" tabindex="-1">Anterior</a>
-        </li>
+                var ultimoPago = pegue.pagos?
+                .OrderByDescending(p => p.fechaPago)
+                .FirstOrDefault();
 
-        @for (int i = 1; i <= totalPages; i++)
-        {
-            <li class="page-item @(i == currentPage ? "active" : "")">
-                <a class="page-link" href="@Url.Action("ListaPegues", new { estado = estadoSeleccionado, comunidad = comunidadFiltro, page = i })">@i</a>
+                <tr>
+                    <td class="px-3 py-3 border-b border-gray-200 text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap">
+                            @pegue.PegueId
+                        </p>
+                    </td>
+                    <td class="px-3 py-3 border-b border-gray-200 text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap">
+                            @pegue.comunidad
+                        </p>
+                    </td>
+                    <td class="px-3 py-3 border-b border-gray-200 text-sm">
+                        <p class="text-gray-900">
+                            @pegue.direccion
+                        </p>
+                    </td>
+                    <td class="px-3 py-3 border-b border-gray-200 text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap">
+                            @pegue.dueño
+                        </p>
+                    </td>
+                    <td class="px-3 py-3 border-b border-gray-200 text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap">
+                            @pegue.codigo
+                        </p>
+                    </td>
+                    <td class="px-3 py-3 border-b border-gray-200 text-sm">
+                        <span class="relative inline-block px-2 py-1 font-semibold text-sm rounded-full @(pegue.estado ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800")">
+                            <span class="absolute inset-0 rounded-full opacity-50"></span>
+                            <span class="relative">@(pegue.estado ? "Activo" : "Inactivo")</span>
+                        </span>
+                    </td>
+                    <td class="px-3 py-3 border-b border-gray-200 text-sm">
+                        @if (pagosMesActual != null && pagosMesActual.Any())
+                        {
+                            <p class="text-green-500 font-semibold text-xs">
+                                Pagado - @pagosMesActual.Sum(p => p.monto).ToString("C")
+                            </p>
+                            <p class="text-gray-500 text-xs">
+                                Mes actual: @DateTime.Now.ToString("MMM", new System.Globalization.CultureInfo("es-ES"))
+                            </p>
+                        }
+                        else
+                        {
+                            <p class="text-red-500 text-xs">No pagado</p>
+                        }
+
+                        @if (ultimoPago != null)
+                        {
+                            <p class="text-gray-500 text-xs mt-1">
+                                Último pago: @ultimoPago.fechaPago.ToString("MMM", new System.Globalization.CultureInfo("es-ES"))
+                            </p>
+                        }
+                    </td>
+                    <td class="px-3 py-3 border-b border-gray-200 text-sm">
+                        <div class="flex flex-wrap gap-1">
+                            @if (pagosMesActual != null && pagosMesActual.Any())
+                            {
+                                <button class="bg-gray-300 text-gray-700 font-semibold py-1 px-2 rounded text-xs focus:outline-none focus:shadow-outline mb-1" disabled>
+                                    Pago ok
+                                </button>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("CrearPago", "Home", new { pegueId = pegue.PegueId })" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-1 px-2 rounded text-xs focus:outline-none focus:shadow-outline mb-1 inline-block">
+                                    Pagar
+                                </a>
+                            }
+
+                            <a href="@Url.Action("EditarPegue", "Home", new { id = pegue.PegueId })" class="bg-yellow-500 hover:bg-yellow-700 text-white font-semibold py-1 px-2 rounded text-xs focus:outline-none focus:shadow-outline mb-1 inline-block">
+                                Editar
+                            </a>
+
+                            <form asp-action="EliminarPegue" asp-controller="Home" method="post" class="inline-block">
+                                <input type="hidden" name="id" value="@pegue.PegueId" />
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-semibold py-1 px-2 rounded text-xs focus:outline-none focus:shadow-outline"
+                                        onclick="return confirm('¿Estás seguro de eliminar este pegue?')">
+                                    Eliminar
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@if (totalPages > 1)
+{
+    <nav aria-label="Page navigation" class="mt-4">
+        <ul class="inline-flex items-center -space-x-px">
+            <li class="@(currentPage == 1 ? "disabled" : "")">
+                <a href="@Url.Action("ListaPegues", new { estado = estadoSeleccionado, comunidad = comunidadFiltro, page = currentPage - 1 })" class="py-2 px-3 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700">
+                    Anterior
+                </a>
             </li>
-        }
+            @for (int i = 1; i <= totalPages; i++)
+            {
+                <li class="@(i == currentPage ? "active" : "")">
+                    <a href="@Url.Action("ListaPegues", new { estado = estadoSeleccionado, comunidad = comunidadFiltro, page = i })" class="py-2 px-3 text-sm leading-tight @(i == currentPage ? "text-indigo-600 bg-indigo-50 border border-indigo-500 hover:bg-indigo-100 hover:text-indigo-700" : "text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700")">
+                        @i
+                    </a>
+                </li>
+            }
+            <li class="@(currentPage == totalPages ? "disabled" : "")">
+                <a href="@Url.Action("ListaPegues", new { estado = estadoSeleccionado, comunidad = comunidadFiltro, page = currentPage + 1 })" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700">
+                    Siguiente
+                </a>
+            </li>
+        </ul>
+    </nav>
+}
 
-        <li class="page-item @(currentPage == totalPages ? "disabled" : "")">
-            <a class="page-link" href="@Url.Action("ListaPegues", new { estado = estadoSeleccionado, comunidad = comunidadFiltro, page = currentPage + 1 })">Siguiente</a>
-        </li>
-    </ul>
-</nav>
+<style>
+    .pagination .active a {
+        background-color: #6366f1; /* Indigo-600 */
+        color: white;
+        border-color: #6366f1;
+    }
+
+    .pagination .disabled a {
+        color: #6b7280; /* Gray-500 */
+        cursor: not-allowed;
+    }
+</style>

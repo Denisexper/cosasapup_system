@@ -4,52 +4,67 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - system_cosasapup</title>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/system_cosasapup.styles.css" asp-append-version="true" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1 0 auto;
+        }
+
+        footer {
+            flex-shrink: 0;
+        }
+    </style>
 </head>
-<body class="d-flex flex-column min-vh-100 bg-light">
+<body class="bg-gray-100 text-gray-800 font-sans">
+
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
-            <div class="container-fluid">
-                <a class="navbar-brand fw-bold" asp-area="" asp-controller="Home" asp-action="Index">system_cosasapup</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="ListaPegues">Lista de Pegues</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="ListaPagos">Lista de Pagos</a>
-                        </li>
-                    </ul>
+        <nav class="bg-gray-800 shadow-md">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <div class="flex items-center">
+                        <a class="text-white text-xl font-bold" asp-area="" asp-controller="Home" asp-action="Index">
+                            system_cosasapup
+                        </a>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a class="text-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="text-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium" asp-area="" asp-controller="Home" asp-action="ListaPegues">Pegues</a>
+                            <a class="text-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium" asp-area="" asp-controller="Home" asp-action="ListaPagos">Pagos</a>
+                        </div>
+                    </div>
                 </div>
-
-
-
             </div>
         </nav>
     </header>
 
-    <main role="main" class="flex-grow-1 py-4">
-        <div class="container">
+    <main role="main" class="py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             @RenderBody()
         </div>
     </main>
 
-    <footer class="bg-dark text-white-50 text-center py-3 mt-auto">
-        <div class="container">
-            &copy; 2025 - <span class="fw-semibold text-white">system_cosasapup</span> -
-            <a class="text-decoration-none text-white-50" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="bg-gray-800 text-white text-center py-4">
+        <div class="text-sm">
+            &copy; 2025 - <span class="font-semibold">system_cosasapup</span> -
+            <a class="underline text-gray-300 hover:text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
 

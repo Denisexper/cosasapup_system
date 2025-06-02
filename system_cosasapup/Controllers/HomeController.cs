@@ -38,7 +38,7 @@ public class HomeController : Controller
     //para filtar y paginacion
     public async Task<IActionResult> ListaPegues(string estado, string comunidad, int page = 1)
     {
-        int pageSize = 10;
+        int pageSize = 6;
 
         var peguesQuery = _context.pegues
             .Include(p => p.pagos)
@@ -126,11 +126,21 @@ public class HomeController : Controller
     }
 
     //ver lista de pagos
-    public async Task<IActionResult> ListaPagos()
+    public async Task<IActionResult> ListaPagos(int page = 1, int pageSize = 10)
     {
+        var totalRecords = await _context.pagos.CountAsync();
+        var totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
+
         var pagos = await _context.pagos
             .Include(p => p.Pegue)
+            .OrderByDescending(p => p.fechaPago) // Ordenar por fecha de pago descendente (opcional)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
             .ToListAsync();
+
+        ViewBag.CurrentPage = page;
+        ViewBag.TotalPages = totalPages;
+        ViewBag.PageSize = pageSize;
 
         return View(pagos);
     }

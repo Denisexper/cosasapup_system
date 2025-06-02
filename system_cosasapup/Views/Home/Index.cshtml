@@ -1,21 +1,33 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Dashboard";
 }
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8 text-center">
-            <div class="card shadow rounded-4 border-0">
-                <div class="card-body py-5">
-                    <h1 class="display-4 mb-4 text-primary">Welcome</h1>
-                    <p class="lead">
-                        Learn about
-                        <a href="https://learn.microsoft.com/aspnet/core" class="btn btn-outline-primary btn-sm" target="_blank">
-                            building Web apps with ASP.NET Core
-                        </a>.
-                    </p>
-                </div>
-            </div>
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+    <div class="bg-gray-800 bg-opacity-75 backdrop-blur-lg rounded-xl shadow-2xl p-8 w-full max-w-xl text-center">
+
+        <div class="mb-6">
+            <img src="/img/logo.jpg" alt="Logo" class="h-20 mx-auto rounded-full shadow-md border border-gray-700">
         </div>
+
+        <h1 class="text-3xl md:text-4xl font-bold text-indigo-400 mb-4">Bienvenido al sistema COSASAPUP</h1>
+        <p class="text-lg text-gray-300 mb-6">
+            Administración de pegues de agua.
+        </p>
+
+        <div class="mt-8 space-y-4">
+            <a href="@Url.Action("ListaPegues", "Home")"
+               class="relative inline-flex items-center justify-center p-4 px-6 rounded-md font-semibold text-indigo-100 bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-75 transition-colors duration-300">
+                <span class="absolute top-0 left-0 w-full h-full rounded-md bg-indigo-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></span>
+                <span class="relative">Gestionar Pegues</span>
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </a>
+            <a href="@Url.Action("ListaPagos", "Home")"
+               class="relative inline-flex items-center justify-center p-4 px-6 rounded-md font-semibold text-green-100 bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75 transition-colors duration-300">
+                <span class="absolute top-0 left-0 w-full h-full rounded-md bg-green-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></span>
+                <span class="relative">Gestionar Pagos</span>
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </a>
+        </div>
+
     </div>
 </div>
