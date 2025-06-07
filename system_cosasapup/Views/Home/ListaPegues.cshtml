@@ -32,10 +32,22 @@
     <button type="submit" class="bg-indigo-500 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Filtrar</button>
 </form>
 
-<a asp-action="CrearPegue" class="inline-flex items-center bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-3">
-    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 3h3m-3 0h-3m-3 2a9 9 0 1118 0 9 9 0 01-18 0z"></path></svg>
-    Crear nuevo Pegue
-</a>
+<div class="flex justify-between items-center mb-3">
+    <a asp-action="CrearPegue" class="inline-flex items-center bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 3h3m-3 0h-3m-3 2a9 9 0 1118 0 9 9 0 01-18 0z"></path>
+        </svg>
+        Crear nuevo Pegue
+    </a>
+
+    <a asp-action="ReportePegues" target="_blank" class="inline-flex items-center bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+        </svg>
+        Generar Reporte PDF
+    </a>
+</div>
+
 
 <div class="overflow-x-auto">
     <table class="min-w-full leading-normal shadow-md rounded-lg overflow-hidden bg-white">
@@ -197,7 +209,7 @@
     .pagination .active a {
         background-color: #6366f1; /* Indigo-600 */
         color: white;
-        border-color: #6366f1;
+        border-color: #6366f1;  
     }
 
     .pagination .disabled a {

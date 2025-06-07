@@ -209,6 +209,9 @@ public class HomeController : Controller
         return RedirectToAction("ListaPegues");
     }
 
+    //reportes
+
+
 
 
 

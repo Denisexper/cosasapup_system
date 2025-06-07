@@ -1,0 +1,28 @@
+﻿@model List<system_cosasapup.Models.pegues>
+
+<h1>Reporte de Pegues</h1>
+<table border="1" cellpadding="5" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Comunidad</th>
+            <th>Dirección</th>
+            <th>Dueño</th>
+            <th>Código</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.PegueId</td>
+                <td>@p.comunidad</td>
+                <td>@p.direccion</td>
+                <td>@p.dueño</td>
+                <td>@p.codigo</td>
+                <td>@(p.estado ? "Activo" : "Inactivo")</td>
+            </tr>
+        }
+    </tbody>
+</table>
