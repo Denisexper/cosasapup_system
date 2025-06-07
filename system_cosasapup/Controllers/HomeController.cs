@@ -22,6 +22,18 @@ public class HomeController : Controller
             .Include(p => p.pagos)
             .ToListAsync();
         return View(listaPegues);
+        {
+
+
+            //login
+            if (HttpContext.Session.GetInt32("UsuarioId") == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+
+            
+            return View();
+        }
     }
 
     public IActionResult Privacy()
