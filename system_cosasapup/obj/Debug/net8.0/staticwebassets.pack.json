@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\system_cosasapup.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\vasqu\\Source\\Repos\\cosasapup_system\\system_cosasapup\\wwwroot\\Rotativa\\wkhtmltopdf.exe",
+      "PackagePath": "staticwebassets\\Rotativa\\wkhtmltopdf.exe"
+    },
+    {
       "Id": "C:\\Users\\vasqu\\Source\\Repos\\cosasapup_system\\system_cosasapup\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

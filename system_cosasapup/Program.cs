@@ -1,12 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using system_cosasapup.Data;
+using Rotativa.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// ? Solo una vez: configurar el DbContext con el nombre correcto del connection string
 builder.Services.AddDbContext<AplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection"))); // Asegúrate que este nombre exista en appsettings.json
 
-// Agrega soporte para sesiones
+// ? Solo una vez: agregar MVC
+builder.Services.AddControllersWithViews();
+
+// ? Configurar sesiones
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
@@ -15,12 +20,12 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
-
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// ? Configurar Rotativa (debe ir después de app.Build())
+RotativaConfiguration.Setup(app.Environment.WebRootPath, "Rotativa");
+
+// ? Middleware
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -29,15 +34,11 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
-// Habilitar sesiones
-app.UseSession();
-
+app.UseSession(); // debe ir antes de Authorization
 app.UseAuthorization();
 
-// Cambié el default controller y action para que coincidan con tu AuthController.Login
+// ? Ruta por defecto
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Auth}/{action=Login}/{id?}");

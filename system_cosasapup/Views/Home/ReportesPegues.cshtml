@@ -1,28 +1,82 @@
 ﻿@model List<system_cosasapup.Models.pegues>
 
-<h1>Reporte de Pegues</h1>
-<table border="1" cellpadding="5" cellspacing="0" width="100%">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Comunidad</th>
-            <th>Dirección</th>
-            <th>Dueño</th>
-            <th>Código</th>
-            <th>Estado</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var p in Model)
-        {
-            <tr>
-                <td>@p.PegueId</td>
-                <td>@p.comunidad</td>
-                <td>@p.direccion</td>
-                <td>@p.dueño</td>
-                <td>@p.codigo</td>
-                <td>@(p.estado ? "Activo" : "Inactivo")</td>
-            </tr>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Reporte de Pegues</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
         }
-    </tbody>
-</table>
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #444;
+            padding: 6px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #eee;
+        }
+
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>Reporte de Pegues</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Comunidad</th>
+                <th>Dirección</th>
+                <th>Dueño</th>
+                <th>Código</th>
+                <th>Estado</th>
+                <th>Pagado Mes Actual</th>
+                <th>Último Pago</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pegue in Model)
+            {
+                var pagosMesActual = pegue.pagos?
+                .Where(p => p.fechaPago.Month == DateTime.Now.Month && p.fechaPago.Year == DateTime.Now.Year)
+                .ToList();
+
+                var ultimoPago = pegue.pagos?
+                .OrderByDescending(p => p.fechaPago)
+                .FirstOrDefault();
+
+                <tr>
+                    <td>@pegue.PegueId</td>
+                    <td>@pegue.comunidad</td>
+                    <td>@pegue.direccion</td>
+                    <td>@pegue.dueño</td>
+                    <td>@pegue.codigo</td>
+                    <td>@(pegue.estado ? "Activo" : "Inactivo")</td>
+                    <td>
+                        @(pagosMesActual != null && pagosMesActual.Any()
+                            ? "Sí - " + pagosMesActual.Sum(p => p.monto).ToString("C")
+                            : "No")
+                    </td>
+                    <td>
+                        @(ultimoPago != null
+                            ? ultimoPago.fechaPago.ToString("dd/MM/yyyy")
+                            : "Sin pagos")
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

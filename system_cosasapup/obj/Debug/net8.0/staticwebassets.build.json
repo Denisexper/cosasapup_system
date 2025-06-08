@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZxS18UzG9ihlRLuNTbdXw3c4yywsF+1N87Obf+L9qIU=",
+  "Hash": "JqOc2hoqX1QgLUN9ucLF4nw1v/x+l1N8UspO2TsSbGg=",
   "Source": "system_cosasapup",
   "BasePath": "_content/system_cosasapup",
   "Mode": "Default",
@@ -1212,6 +1212,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\vasqu\\Source\\Repos\\cosasapup_system\\system_cosasapup\\wwwroot\\Rotativa\\wkhtmltopdf.exe",
+      "SourceId": "system_cosasapup",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\vasqu\\Source\\Repos\\cosasapup_system\\system_cosasapup\\wwwroot\\",
+      "BasePath": "_content/system_cosasapup",
+      "RelativePath": "Rotativa/wkhtmltopdf.exe",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Rotativa\\wkhtmltopdf.exe"
     }
   ]
 }

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using system_cosasapup.Data;
 using system_cosasapup.Models;
 using Microsoft.EntityFrameworkCore;
+using Rotativa.AspNetCore;
 
 public class HomeController : Controller
 {
@@ -209,11 +210,34 @@ public class HomeController : Controller
         return RedirectToAction("ListaPegues");
     }
 
-    //reportes
+    //reportes pegues
+    public async Task<IActionResult> ReportePegues()
+    {
+        var pegues = await _context.pegues
+            .Include(p => p.pagos)
+            .ToListAsync();
 
+        return new ViewAsPdf("ReportesPegues", pegues)
+        {
+            FileName = "ReportePegues.pdf",
+            PageSize = Rotativa.AspNetCore.Options.Size.A4,
+            PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape
+        };
+    }
 
+    //reportes pagos
+    public async Task<IActionResult> ReportePagos()
+    {
+        var pagos = await _context.pagos
+            .Include(p => p.Pegue)
+            .OrderByDescending(p => p.fechaPago)
+            .ToListAsync();
 
-
-
-
+        return new ViewAsPdf("ReportesPagos", pagos)
+        {
+            FileName = "ReportePagos.pdf",
+            PageSize = Rotativa.AspNetCore.Options.Size.A4,
+            PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape
+        };
+    }
 }

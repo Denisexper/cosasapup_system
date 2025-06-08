@@ -513,3 +513,5 @@ C:\Users\neheg\Desktop\CIclos U\Ciclo 1 2025\Paginas WEB\CosaSapup\system_cosasa
 C:\Users\neheg\Desktop\CIclos U\Ciclo 1 2025\Paginas WEB\CosaSapup\system_cosasapup\obj\Debug\net8.0\system_cosasapup.genruntimeconfig.cache
 C:\Users\neheg\Desktop\CIclos U\Ciclo 1 2025\Paginas WEB\CosaSapup\system_cosasapup\obj\Debug\net8.0\ref\system_cosasapup.dll
 C:\Users\neheg\Desktop\CIclos U\Ciclo 1 2025\Paginas WEB\CosaSapup\system_cosasapup\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\vasqu\Source\Repos\cosasapup_system\system_cosasapup\bin\Debug\net8.0\Rotativa.AspNetCore.dll
+C:\Users\vasqu\Source\Repos\cosasapup_system\system_cosasapup\obj\Debug\net8.0\system_cosasapup.MvcApplicationPartsAssemblyInfo.cs
