@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var currentController = ViewContext.RouteData.Values["Controller"]?.ToString();
+    var currentAction = ViewContext.RouteData.Values["Action"]?.ToString();
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -34,41 +39,29 @@
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans">
 
-    <header>
-        <nav class="bg-gray-800 shadow-md">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex items-center justify-between h-16">
-                    <div class="flex items-center">
-                        <a class="text-white text-xl font-bold" asp-area="" asp-controller="Home" asp-action="Index">
-                            system_cosasapup
-                        </a>
-                    </div>
-                    <div class="hidden md:block">
-                        <div class="ml-10 flex items-baseline space-x-4">
-                            <a class="text-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                            <a class="text-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium" asp-area="" asp-controller="Home" asp-action="ListaPegues">Pegues</a>
-                            <a class="text-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium" asp-area="" asp-controller="Home" asp-action="ListaPagos">Pagos</a>
+    @if (!(currentController == "Auth" && (currentAction == "Login" || currentAction == "Register")))
+    {
+        <header>
+            <nav class="bg-gray-800 shadow-md">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-center justify-between h-16">
+                        <div class="flex items-center">
+                            <a class="text-white text-xl font-bold" asp-area="" asp-controller="Home" asp-action="Index">
+                                system_cosasapup
+                            </a>
                         </div>
-                    </div>
-        <nav class="bg-gray-800 shadow-md">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex items-center justify-between h-16">
-                    <div class="flex items-center">
-                        <a class="text-white text-xl font-bold" asp-area="" asp-controller="Home" asp-action="Index">
-                            system_cosasapup
-                        </a>
-                    </div>
-                    <div class="hidden md:block">
-                        <div class="ml-10 flex items-baseline space-x-4">
-                            <a class="text-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
-                            <a class="text-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium" asp-area="" asp-controller="Home" asp-action="ListaPegues">Pegues</a>
-                            <a class="text-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium" asp-area="" asp-controller="Home" asp-action="ListaPagos">Pagos</a>
+                        <div class="hidden md:block">
+                            <div class="ml-10 flex items-baseline space-x-4">
+                                <a class="text-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
+                                <a class="text-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium" asp-area="" asp-controller="Home" asp-action="ListaPegues">Pegues</a>
+                                <a class="text-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium" asp-area="" asp-controller="Home" asp-action="ListaPagos">Pagos</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </nav>
-    </header>
+            </nav>
+        </header>
+    }
 
     <main role="main" class="py-8">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -76,12 +69,15 @@
         </div>
     </main>
 
-    <footer class="bg-gray-800 text-white text-center py-4">
-        <div class="text-sm">
-            &copy; 2025 - <span class="font-semibold">system_cosasapup</span> -
-            <a class="underline text-gray-300 hover:text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+    @if (!(currentController == "Auth" && (currentAction == "Login" || currentAction == "Register")))
+    {
+        <footer class="bg-gray-800 text-white text-center py-4">
+            <div class="text-sm">
+                &copy; 2025 - <span class="font-semibold">system_cosasapup</span> -
+                <a class="underline text-gray-300 hover:text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+    }
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

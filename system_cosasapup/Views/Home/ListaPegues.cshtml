@@ -23,7 +23,7 @@
 
     <label for="comunidadFiltro" class="text-gray-700 mr-2">Filtrar por Comunidad:</label>
     <select name="comunidad" id="comunidadFiltro" class="shadow-sm bg-white border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2">
-        <option value="" selected="@(string.IsNullOrEmpty(comunidadFiltro))">-- Todas --</option>
+        <option value="" selected="@(string.IsNullOrEmpty(comunidadFiltro))">Todas</option>
         <option value="Zapatagua" selected="@(comunidadFiltro == "Zapatagua")">Zapatagua</option>
         <option value="El Almidon" selected="@(comunidadFiltro == "El Almidon")">El Almidon</option>
         <option value="La Cajita" selected="@(comunidadFiltro == "La Cajita")">La Cajita</option>
@@ -33,12 +33,16 @@
 </form>
 
 <div class="flex justify-between items-center mb-3">
-    <a asp-action="CrearPegue" class="inline-flex items-center bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 3h3m-3 0h-3m-3 2a9 9 0 1118 0 9 9 0 01-18 0z"></path>
-        </svg>
-        Crear nuevo Pegue
-    </a>
+    @* Se recomienda envolver esto en una condición de sesión para que solo se muestre si el usuario está logeado *@
+    @if (Context.Session.GetInt32("UsuarioId") != null)
+    {
+        <a asp-action="CrearPegue" class="inline-flex items-center bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 3h3m-3 0h-3m-3 2a9 9 0 1118 0 9 9 0 01-18 0z"></path>
+            </svg>
+            Crear nuevo Pegue
+        </a>
+    }
 
     <a asp-action="ReportePegues" target="_blank" class="inline-flex items-center bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -146,31 +150,34 @@
                     </td>
                     <td class="px-3 py-3 border-b border-gray-200 text-sm">
                         <div class="flex flex-wrap gap-1">
-                            @if (pagosMesActual != null && pagosMesActual.Any())
+                            @* Solo mostrar botones de acción si el usuario está logeado *@
+                            @if (Context.Session.GetInt32("UsuarioId") != null)
                             {
-                                <button class="bg-gray-300 text-gray-700 font-semibold py-1 px-2 rounded text-xs focus:outline-none focus:shadow-outline mb-1" disabled>
-                                    Pago ok
-                                </button>
+                                @if (pagosMesActual != null && pagosMesActual.Any())
+                                {
+                                    <button class="bg-gray-300 text-gray-700 font-semibold py-1 px-2 rounded text-xs focus:outline-none focus:shadow-outline mb-1" disabled>
+                                        Pago ok
+                                    </button>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("CrearPago", "Home", new { pegueId = pegue.PegueId })" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-1 px-2 rounded text-xs focus:outline-none focus:shadow-outline mb-1 inline-block">
+                                        Pagar
+                                    </a>
+                                }
+
+                                <a href="@Url.Action("EditarPegue", "Home", new { id = pegue.PegueId })" class="bg-yellow-500 hover:bg-yellow-700 text-white font-semibold py-1 px-2 rounded text-xs focus:outline-none focus:shadow-outline mb-1 inline-block">
+                                    Editar
+                                </a>
+
+                                <a href="@Url.Action("ConfirmarEliminar", "Home", new { id = pegue.PegueId })" class="bg-red-500 hover:bg-red-700 text-white font-semibold py-1 px-2 rounded text-xs focus:outline-none focus:shadow-outline mb-1 inline-block">
+                                    Eliminar
+                                </a>
                             }
                             else
                             {
-                                <a href="@Url.Action("CrearPago", "Home", new { pegueId = pegue.PegueId })" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-1 px-2 rounded text-xs focus:outline-none focus:shadow-outline mb-1 inline-block">
-                                    Pagar
-                                </a>
+                                <span class="text-gray-500 text-xs">Inicia sesión para acciones</span>
                             }
-
-                            <a href="@Url.Action("EditarPegue", "Home", new { id = pegue.PegueId })" class="bg-yellow-500 hover:bg-yellow-700 text-white font-semibold py-1 px-2 rounded text-xs focus:outline-none focus:shadow-outline mb-1 inline-block">
-                                Editar
-                            </a>
-
-                            <form asp-action="EliminarPegue" asp-controller="Home" method="post" class="inline-block">
-                                <input type="hidden" name="id" value="@pegue.PegueId" />
-                                @Html.AntiForgeryToken()
-                                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-semibold py-1 px-2 rounded text-xs focus:outline-none focus:shadow-outline"
-                                        onclick="return confirm('¿Estás seguro de eliminar este pegue?')">
-                                    Eliminar
-                                </button>
-                            </form>
                         </div>
                     </td>
                 </tr>
@@ -182,22 +189,26 @@
 @if (totalPages > 1)
 {
     <nav aria-label="Page navigation" class="mt-4">
-        <ul class="inline-flex items-center -space-x-px">
+        <ul class="inline-flex items-center -space-x-px pagination">
+            @* Agregado 'pagination' class aquí *@
             <li class="@(currentPage == 1 ? "disabled" : "")">
-                <a href="@Url.Action("ListaPegues", new { estado = estadoSeleccionado, comunidad = comunidadFiltro, page = currentPage - 1 })" class="py-2 px-3 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700">
+                <a href="@(currentPage == 1 ? "#" : Url.Action("ListaPegues", new { estado = estadoSeleccionado, comunidad = comunidadFiltro, page = currentPage - 1 }))"
+                   class="py-2 px-3 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 @(currentPage == 1 ? "opacity-50 cursor-not-allowed" : "")">
                     Anterior
                 </a>
             </li>
             @for (int i = 1; i <= totalPages; i++)
             {
                 <li class="@(i == currentPage ? "active" : "")">
-                    <a href="@Url.Action("ListaPegues", new { estado = estadoSeleccionado, comunidad = comunidadFiltro, page = i })" class="py-2 px-3 text-sm leading-tight @(i == currentPage ? "text-indigo-600 bg-indigo-50 border border-indigo-500 hover:bg-indigo-100 hover:text-indigo-700" : "text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700")">
+                    <a href="@Url.Action("ListaPegues", new { estado = estadoSeleccionado, comunidad = comunidadFiltro, page = i })"
+                       class="py-2 px-3 text-sm leading-tight @(i == currentPage ? "text-indigo-600 bg-indigo-50 border border-indigo-500 hover:bg-indigo-100 hover:text-indigo-700" : "text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700")">
                         @i
                     </a>
                 </li>
             }
             <li class="@(currentPage == totalPages ? "disabled" : "")">
-                <a href="@Url.Action("ListaPegues", new { estado = estadoSeleccionado, comunidad = comunidadFiltro, page = currentPage + 1 })" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700">
+                <a href="@(currentPage == totalPages ? "#" : Url.Action("ListaPegues", new { estado = estadoSeleccionado, comunidad = comunidadFiltro, page = currentPage + 1 }))"
+                   class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 @(currentPage == totalPages ? "opacity-50 cursor-not-allowed" : "")">
                     Siguiente
                 </a>
             </li>
@@ -205,15 +216,3 @@
     </nav>
 }
 
-<style>
-    .pagination .active a {
-        background-color: #6366f1; /* Indigo-600 */
-        color: white;
-        border-color: #6366f1;  
-    }
-
-    .pagination .disabled a {
-        color: #6b7280; /* Gray-500 */
-        cursor: not-allowed;
-    }
-</style>

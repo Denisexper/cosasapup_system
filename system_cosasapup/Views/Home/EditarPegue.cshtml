@@ -4,40 +4,67 @@
     ViewData["Title"] = "Editar Pegue";
 }
 
-<h2 class="text-2xl font-bold mb-4">Editar Pegue</h2>
+<div class="container mx-auto p-6 md:p-8 bg-white rounded-lg shadow-xl max-w-2xl mt-10">
+    <h2 class="text-3xl font-extrabold text-gray-800 mb-6 text-center">Editar Información del Pegue</h2>
 
-<form asp-action="EditarPegue" method="post">
-    <input type="hidden" asp-for="PegueId" />
+    <form asp-action="EditarPegue" method="post" class="space-y-5">
+        <input type="hidden" asp-for="PegueId" />
+        @Html.AntiForgeryToken() @* Importante para la seguridad CSRF *@
 
-    <div class="mb-3">
-        <label asp-for="dueño" class="form-label">Nombre del Dueño</label>
-        <input asp-for="dueño" class="form-control" />
-    </div>
+        <div class="mb-4">
+            <label asp-for="dueño" class="block text-gray-700 text-sm font-semibold mb-2">Nombre del Dueño:</label>
+            <input asp-for="dueño" class="shadow-sm appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200" />
+            <span asp-validation-for="dueño" class="text-red-600 text-xs mt-1 block"></span>
+        </div>
 
-    <div class="mb-3">
-        <label asp-for="comunidad" class="form-label">Comunidad</label>
-        <input asp-for="comunidad" class="form-control" />
-    </div>
+        <div class="mb-4">
+            <label asp-for="comunidad" class="block text-gray-700 text-sm font-semibold mb-2">Comunidad:</label>
+            <select asp-for="comunidad" class="shadow-sm appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200">
+                <option value="" disabled >Seleccionar Comunidad</option>
+                <option value="Zapatagua">Zapatagua</option>
+                <option value="El Almidon">El Almidon</option>
+                <option value="La Cajita">La Cajita</option>
+               
+            </select>
+            <span asp-validation-for="comunidad" class="text-red-600 text-xs mt-1 block"></span>
+        </div>
 
-    <div class="mb-3">
-        <label asp-for="codigo" class="form-label">Codigo Peuge</label>
-        <input asp-for="codigo" class="form-control" />
-    </div>
+        <div class="mb-4">
+            <label asp-for="codigo" class="block text-gray-700 text-sm font-semibold mb-2">Código de Pegue:</label>
+            <input asp-for="codigo" class="shadow-sm appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200" />
+            <span asp-validation-for="codigo" class="text-red-600 text-xs mt-1 block"></span>
+        </div>
 
-    <div class="mb-3">
-        <label asp-for="direccion" class="form-label">Direccion</label>
-        <input asp-for="direccion" class="form-control" />
-    </div>
+        <div class="mb-4">
+            <label asp-for="direccion" class="block text-gray-700 text-sm font-semibold mb-2">Direccion:</label>
+            <select asp-for="direccion" class="shadow-sm appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200">
+                <option value="" disabled>Seleccionar Direccion</option>
+                <option value="Zapatagua">Zapatagua</option>
+                <option value="El Almidon">El Almidon</option>
+                <option value="La Cajita">La Cajita</option>
 
-    <div class="mb-3">
-        <label asp-for="estado" class="form-label">Estado</label>
-        <select asp-for="estado" class="form-control">
-            <option value="true">Activo</option>
-            <option value="false">Inactivo</option>
-        </select>
-    </div>
+            </select>
+            <span asp-validation-for="direccion" class="text-red-600 text-xs mt-1 block"></span>
+        </div>
 
+        <div class="mb-6">
+            @* Aumentado mb para más espacio antes de los botones *@
+            <label asp-for="estado" class="block text-gray-700 text-sm font-semibold mb-2">Estado:</label>
+            <select asp-for="estado" class="shadow-sm appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200">
+                <option value="true">Activo</option>
+                <option value="false">Inactivo</option>
+            </select>
+            <span asp-validation-for="estado" class="text-red-600 text-xs mt-1 block"></span>
+        </div>
 
-    <button type="submit" class="btn btn-primary">Guardar cambios</button>
-    <a asp-action="ListaPegues" class="btn btn-secondary">Cancelar</a>
-</form>
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mt-6">
+            @* Flexbox para alinear botones, con responsive *@
+            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 px-6 rounded-lg shadow-md hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-indigo-300 transition duration-300 ease-in-out transform hover:scale-105 active:scale-95">
+                Guardar Cambios
+            </button>
+            <a asp-action="ListaPegues" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2.5 px-6 rounded-lg shadow-md hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-gray-300 transition duration-300 ease-in-out transform hover:scale-105 active:scale-95 text-center flex items-center justify-center">
+                Cancelar
+            </a>
+        </div>
+    </form>
+</div>
